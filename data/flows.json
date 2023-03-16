@@ -8,6 +8,32 @@
         "env": []
     },
     {
+        "id": "f2046bc7.516eb8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a39d6a5a.b9ea58",
+        "type": "serial-port",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "300",
+        "databits": "7",
+        "parity": "even",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "1000",
+        "bin": "false",
+        "out": "interbyte",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
         "id": "b35b3f17e0155de8",
         "type": "debug",
         "z": "4668cb4464f76ef5",
@@ -19,8 +45,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 140,
+        "x": 720,
+        "y": 100,
         "wires": []
     },
     {
@@ -49,6 +75,209 @@
         "wires": [
             [
                 "b35b3f17e0155de8"
+            ]
+        ]
+    },
+    {
+        "id": "f4e0e469.028068",
+        "type": "inject",
+        "z": "f2046bc7.516eb8",
+        "name": "",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "4581b591.599dac"
+            ]
+        ]
+    },
+    {
+        "id": "4581b591.599dac",
+        "type": "trigger",
+        "z": "f2046bc7.516eb8",
+        "name": "",
+        "op1": "[\"0x2F\",\"0x3F\",\"0x21\",\"0x0D\",\"0x0A\"]",
+        "op2": "[\"0x06\",\"0x30\",\"0x30\",\"0x30\",\"0x0D\",\"0x0A\"]",
+        "op1type": "bin",
+        "op2type": "bin",
+        "duration": "100",
+        "extend": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "outputs": 1,
+        "x": 300,
+        "y": 80,
+        "wires": [
+            [
+                "4ac03ed.35a84c"
+            ]
+        ]
+    },
+    {
+        "id": "2832ebbc.839af4",
+        "type": "debug",
+        "z": "f2046bc7.516eb8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "36641060.e852c",
+        "type": "split",
+        "z": "f2046bc7.516eb8",
+        "name": "Aufteilen der Ausgabe",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "bed1d161.721d4"
+            ]
+        ]
+    },
+    {
+        "id": "bed1d161.721d4",
+        "type": "switch",
+        "z": "f2046bc7.516eb8",
+        "name": "Suchen nach Zählerstand (1.8.0)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "1.8.0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "37ff327f.6bb2de"
+            ]
+        ]
+    },
+    {
+        "id": "37ff327f.6bb2de",
+        "type": "split",
+        "z": "f2046bc7.516eb8",
+        "name": "Wert Zählerstand trennen",
+        "splt": "1-0:1.8.0*255(",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [
+                "e074f889.ca3a48"
+            ]
+        ]
+    },
+    {
+        "id": "e074f889.ca3a48",
+        "type": "switch",
+        "z": "f2046bc7.516eb8",
+        "name": "Enthält Zählerstand",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 180,
+        "wires": [
+            [
+                "98bdd1fb.8ec16"
+            ]
+        ]
+    },
+    {
+        "id": "8641792d.69c1f8",
+        "type": "switch",
+        "z": "f2046bc7.516eb8",
+        "name": "Enthält sechsstellige Zahl",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "0",
+                "vt": "num",
+                "v2": "9999999",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1430,
+        "y": 180,
+        "wires": [
+            [
+                "2832ebbc.839af4"
+            ]
+        ]
+    },
+    {
+        "id": "98bdd1fb.8ec16",
+        "type": "split",
+        "z": "f2046bc7.516eb8",
+        "name": "Zählerstand Wert suchen (kWh)",
+        "splt": " kWh",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1170,
+        "y": 180,
+        "wires": [
+            [
+                "8641792d.69c1f8"
+            ]
+        ]
+    },
+    {
+        "id": "4ac03ed.35a84c",
+        "type": "serial request",
+        "z": "f2046bc7.516eb8",
+        "name": "",
+        "serial": "a39d6a5a.b9ea58",
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "36641060.e852c"
             ]
         ]
     }

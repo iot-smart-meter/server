@@ -415,5 +415,27 @@
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/storage/23-watch.js"
             }
         }
+    },
+    "node-red-node-serialport": {
+        "name": "node-red-node-serialport",
+        "version": "1.0.3",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "serialport": {
+                "name": "serialport",
+                "types": [
+                    "serial in",
+                    "serial out",
+                    "serial request",
+                    "serial-port"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-node-serialport",
+                "file": "/data/node_modules/node-red-node-serialport/25-serial.js"
+            }
+        }
     }
 }
