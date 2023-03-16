@@ -2,7 +2,7 @@
     {
         "id": "4668cb4464f76ef5",
         "type": "tab",
-        "label": "Website Test",
+        "label": "Flow 1",
         "disabled": false,
         "info": "",
         "env": []
@@ -144,8 +144,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 720,
-        "y": 100,
+        "x": 640,
+        "y": 140,
         "wires": []
     },
     {
