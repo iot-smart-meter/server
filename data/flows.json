@@ -232,8 +232,8 @@
         "wires": [
             [
                 "d40b208ae856a9fc",
-                "064d0edae39abf68",
-                "5487a2efa8258349"
+                "ed28a0ab1052076c",
+                "85a1c4ded6f3f3b6"
             ]
         ]
     },
@@ -260,28 +260,9 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
-        "x": 540,
-        "y": 300,
+        "x": 760,
+        "y": 240,
         "wires": []
-    },
-    {
-        "id": "5487a2efa8258349",
-        "type": "function",
-        "z": "be6d5efd0c6ff226",
-        "name": "function 1",
-        "func": "msg.payload = msg.payload.msg\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 540,
-        "y": 360,
-        "wires": [
-            [
-                "a8f13fab6b7e23bb"
-            ]
-        ]
     },
     {
         "id": "a8f13fab6b7e23bb",
@@ -301,5 +282,94 @@
         "x": 870,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "ed28a0ab1052076c",
+        "type": "change",
+        "z": "be6d5efd0c6ff226",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.msg",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "a8f13fab6b7e23bb"
+            ]
+        ]
+    },
+    {
+        "id": "85a1c4ded6f3f3b6",
+        "type": "switch",
+        "z": "be6d5efd0c6ff226",
+        "name": "",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "064d0edae39abf68"
+            ],
+            [
+                "909f2dd00e24209c"
+            ]
+        ]
+    },
+    {
+        "id": "54b222f8df1678a4",
+        "type": "http response",
+        "z": "be6d5efd0c6ff226",
+        "name": "",
+        "statusCode": "400 ",
+        "headers": {
+            "content-type": "text/plain"
+        },
+        "x": 990,
+        "y": 280,
+        "wires": [],
+        "info": "\"msg\" attribute musst be given"
+    },
+    {
+        "id": "909f2dd00e24209c",
+        "type": "template",
+        "z": "be6d5efd0c6ff226",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "\"msg\" must be given!",
+        "output": "str",
+        "x": 780,
+        "y": 280,
+        "wires": [
+            [
+                "54b222f8df1678a4"
+            ]
+        ]
     }
 ]
