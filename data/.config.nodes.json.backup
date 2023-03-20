@@ -673,24 +673,5 @@
                 "file": "/usr/src/node-red/node_modules/node-red-contrib-request-validator/RequestValidator.js"
             }
         }
-    },
-    "node-red-contrib-dynamic-request-validator": {
-        "name": "node-red-contrib-dynamic-request-validator",
-        "version": "1.1.6",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "requestValidator": {
-                "name": "requestValidator",
-                "types": [
-                    "requestValidator"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-contrib-dynamic-request-validator",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-dynamic-request-validator/dynamicRequestValidator.js"
-            }
-        }
     }
 }
