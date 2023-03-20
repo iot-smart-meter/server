@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "942dc37616da95b9",
+        "type": "tab",
+        "label": "Sensor init",
+        "disabled": false,
+        "info": "Goal is to enable the first handshake with a sensor using a POST Request",
+        "env": []
+    },
+    {
         "id": "1f1fc398241323e9",
         "type": "ui_tab",
         "name": "Home",
@@ -223,11 +231,11 @@
         "type": "http in",
         "z": "be6d5efd0c6ff226",
         "name": "",
-        "url": "/sensor",
+        "url": "/test",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 310,
+        "x": 300,
         "y": 240,
         "wires": [
             [
@@ -246,7 +254,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 540,
@@ -369,6 +378,171 @@
         "wires": [
             [
                 "54b222f8df1678a4"
+            ]
+        ]
+    },
+    {
+        "id": "e6256739bb89246f",
+        "type": "http in",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "url": "sensor",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "f54cad9c07529db3"
+            ]
+        ]
+    },
+    {
+        "id": "57f00c388b19d631",
+        "type": "json",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "7eadf39431d3ce1f"
+            ]
+        ]
+    },
+    {
+        "id": "7eadf39431d3ce1f",
+        "type": "switch",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f54cad9c07529db3",
+        "type": "RequestValidator",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "group_name": "",
+        "query": "{}",
+        "reqbody": "{\"id\":{\"type\":\"number\",\"required\":\"true\"}}",
+        "method": "POST",
+        "includeHeader": false,
+        "headerSchema": "",
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "1e77a137eea28190"
+            ],
+            [
+                "fa41242f5012781f",
+                "7682af577efd928e"
+            ]
+        ]
+    },
+    {
+        "id": "75ee7ab3e0c1136e",
+        "type": "http response",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fa41242f5012781f",
+        "type": "http response",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d1b45e9f606025aa",
+        "type": "debug",
+        "z": "942dc37616da95b9",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "7682af577efd928e",
+        "type": "debug",
+        "z": "942dc37616da95b9",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "016875d485a1001d",
+        "type": "comment",
+        "z": "942dc37616da95b9",
+        "name": "Error node at the bottom",
+        "info": "",
+        "x": 450,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1e77a137eea28190",
+        "type": "function",
+        "z": "942dc37616da95b9",
+        "name": "function 1",
+        "func": "var count = context.get(\"numSensors\") || 0;\ncount++;\ncontext.set(\"numSensors\", count);\nmsg.payload.sensorID = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "75ee7ab3e0c1136e",
+                "d1b45e9f606025aa"
             ]
         ]
     }

@@ -654,5 +654,24 @@
                 "file": "/data/node_modules/node-red-dashboard/nodes/ui_spacer.js"
             }
         }
+    },
+    "node-red-contrib-request-validator": {
+        "name": "node-red-contrib-request-validator",
+        "version": "1.0.0",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "RequestValidator": {
+                "name": "RequestValidator",
+                "types": [
+                    "RequestValidator"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-request-validator",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-request-validator/RequestValidator.js"
+            }
+        }
     }
 }
