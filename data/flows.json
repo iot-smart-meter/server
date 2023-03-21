@@ -2,15 +2,7 @@
     {
         "id": "4668cb4464f76ef5",
         "type": "tab",
-        "label": "Website Test",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "be6d5efd0c6ff226",
-        "type": "tab",
-        "label": "Post Responder",
+        "label": "Website Homescreen",
         "disabled": false,
         "info": "",
         "env": []
@@ -24,18 +16,10 @@
         "env": []
     },
     {
-        "id": "1f1fc398241323e9",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "2c287116b37742e8",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -47,54 +31,56 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
                 "default": "#4B7930",
                 "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
+                    "default": "#097479",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
                     "value": "#111111",
                     "edited": false
                 },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#097479",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "base-font": {
@@ -113,7 +99,7 @@
             "name": "Node-RED Dashboard",
             "hideToolbar": "false",
             "allowSwipe": "false",
-            "lockMenu": "false",
+            "lockMenu": "true",
             "allowTempTheme": "true",
             "dateFormat": "DD.MM.YYYY",
             "sizes": {
@@ -129,10 +115,26 @@
         }
     },
     {
-        "id": "aeff77af76e336a5",
+        "id": "10628167c71ff284",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "mi-home",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "b5679d5cc3e99546",
+        "type": "ui_tab",
+        "name": "This is a test",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "798c329928815309",
         "type": "ui_group",
-        "name": "Standard",
-        "tab": "1f1fc398241323e9",
+        "name": "Uhrzeit",
+        "tab": "10628167c71ff284",
         "order": 1,
         "disp": true,
         "width": "6",
@@ -140,117 +142,73 @@
         "className": ""
     },
     {
-        "id": "b35b3f17e0155de8",
-        "type": "debug",
-        "z": "4668cb4464f76ef5",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "056959096706bb03",
+        "id": "d1108013eedb4448",
         "type": "inject",
         "z": "4668cb4464f76ef5",
         "name": "",
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "1",
         "topic": "",
-        "payload": "Hello World!",
-        "payloadType": "str",
-        "x": 370,
-        "y": 140,
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
         "wires": [
             [
-                "b35b3f17e0155de8",
-                "60ab75a7c61273b8"
+                "e4362e3f947bfb54",
+                "e0ad5f7f077cd159"
             ]
         ]
     },
     {
-        "id": "7605bb656fbdb7b6",
-        "type": "ui_template",
+        "id": "a968c9e9907ecace",
+        "type": "ui_text",
         "z": "4668cb4464f76ef5",
-        "group": "aeff77af76e336a5",
-        "name": "",
+        "group": "798c329928815309",
         "order": 0,
         "width": 0,
         "height": 0,
-        "format": "<div ng-bind-html=\"msg.payload\"></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 700,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "60ab75a7c61273b8",
-        "type": "ui_toast",
-        "z": "4668cb4464f76ef5",
-        "position": "top right",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
         "name": "",
-        "x": 750,
-        "y": 200,
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 610,
+        "y": 100,
         "wires": []
     },
     {
-        "id": "d89a12113b35b762",
-        "type": "http in",
-        "z": "be6d5efd0c6ff226",
-        "name": "",
-        "url": "/test",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 300,
-        "y": 240,
+        "id": "e4362e3f947bfb54",
+        "type": "function",
+        "z": "4668cb4464f76ef5",
+        "name": "convert Timestamp",
+        "func": "const fixedStr = (num) => {\n    return (\"0\" + num).slice(-2)\n}\nlet timestamp = new Date(msg.payload);\nconst [hour, minutes, seconds] = [\n    timestamp.getHours(),\n    timestamp.getMinutes(),\n    timestamp.getSeconds(),\n];\nmsg.payload = fixedStr(hour) + \":\" + fixedStr(minutes) + \":\" + fixedStr(seconds);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
         "wires": [
             [
-                "d40b208ae856a9fc",
-                "ed28a0ab1052076c",
-                "85a1c4ded6f3f3b6"
+                "a968c9e9907ecace"
             ]
         ]
     },
     {
-        "id": "d40b208ae856a9fc",
+        "id": "e0ad5f7f077cd159",
         "type": "debug",
-        "z": "be6d5efd0c6ff226",
-        "name": "debug 2",
-        "active": true,
+        "z": "4668cb4464f76ef5",
+        "name": "debug 1",
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -258,128 +216,9 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 240,
+        "x": 420,
+        "y": 160,
         "wires": []
-    },
-    {
-        "id": "064d0edae39abf68",
-        "type": "http response",
-        "z": "be6d5efd0c6ff226",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 760,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "a8f13fab6b7e23bb",
-        "type": "ui_toast",
-        "z": "be6d5efd0c6ff226",
-        "position": "top right",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 870,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "ed28a0ab1052076c",
-        "type": "change",
-        "z": "be6d5efd0c6ff226",
-        "name": "",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.msg",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 570,
-        "y": 360,
-        "wires": [
-            [
-                "a8f13fab6b7e23bb"
-            ]
-        ]
-    },
-    {
-        "id": "85a1c4ded6f3f3b6",
-        "type": "switch",
-        "z": "be6d5efd0c6ff226",
-        "name": "",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 550,
-        "y": 280,
-        "wires": [
-            [
-                "064d0edae39abf68"
-            ],
-            [
-                "909f2dd00e24209c"
-            ]
-        ]
-    },
-    {
-        "id": "54b222f8df1678a4",
-        "type": "http response",
-        "z": "be6d5efd0c6ff226",
-        "name": "",
-        "statusCode": "400 ",
-        "headers": {
-            "content-type": "text/plain"
-        },
-        "x": 990,
-        "y": 280,
-        "wires": [],
-        "info": "\"msg\" attribute musst be given"
-    },
-    {
-        "id": "909f2dd00e24209c",
-        "type": "template",
-        "z": "be6d5efd0c6ff226",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "\"msg\" must be given!",
-        "output": "str",
-        "x": 780,
-        "y": 280,
-        "wires": [
-            [
-                "54b222f8df1678a4"
-            ]
-        ]
     },
     {
         "id": "e6256739bb89246f",
@@ -409,7 +248,7 @@
         "method": "POST",
         "includeHeader": false,
         "headerSchema": "",
-        "convert": false,
+        "convert": true,
         "x": 390,
         "y": 160,
         "wires": [

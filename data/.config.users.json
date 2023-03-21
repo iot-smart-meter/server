@@ -16,6 +16,16 @@
                 "welcome": "3.0.2"
             }
         },
-        "menu-menu-item-sidebar": true
+        "menu-menu-item-sidebar": true,
+        "git": {
+            "user": {
+                "name": "jeppard",
+                "email": "jonas.eppard@gmail.com"
+            }
+        },
+        "debug": {
+            "filter": "filterAll",
+            "filteredNodes": []
+        }
     }
 }
