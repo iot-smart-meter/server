@@ -10,9 +10,9 @@
     {
         "id": "942dc37616da95b9",
         "type": "tab",
-        "label": "Sensor init",
+        "label": "Sensor",
         "disabled": false,
-        "info": "Goal is to enable the first handshake with a sensor using a POST Request",
+        "info": "",
         "env": []
     },
     {
@@ -218,7 +218,7 @@
         "name": "",
         "group_name": "",
         "query": "{}",
-        "reqbody": "{\"id\":{\"type\":\"number\",\"required\":\"true\"}}",
+        "reqbody": "{\"identifier\":{\"type\":\"string\",\"required\":true},\"name\":{\"type\":\"string\",\"required\":false},\"description\":{\"type\":\"string\",\"required\":false},\"current_value\":{\"type\":\"number\",\"required\":true},\"total_value\":{\"type\":\"number\",\"required\":true},\"current_time\":{\"type\":\"date\",\"required\":false}}",
         "method": "POST",
         "includeHeader": false,
         "headerSchema": "",
@@ -227,24 +227,13 @@
         "y": 160,
         "wires": [
             [
-                "1e77a137eea28190"
+                "3844a813438a2714"
             ],
             [
                 "fa41242f5012781f",
                 "8608ada3ee7e3084"
             ]
         ]
-    },
-    {
-        "id": "75ee7ab3e0c1136e",
-        "type": "http response",
-        "z": "942dc37616da95b9",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 790,
-        "y": 140,
-        "wires": []
     },
     {
         "id": "fa41242f5012781f",
@@ -268,25 +257,6 @@
         "wires": []
     },
     {
-        "id": "1e77a137eea28190",
-        "type": "function",
-        "z": "942dc37616da95b9",
-        "name": "function 1",
-        "func": "var count = context.get(\"numSensors\") || 0;\ncount++;\ncontext.set(\"numSensors\", count);\nmsg.payload.sensorID = count;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 620,
-        "y": 140,
-        "wires": [
-            [
-                "75ee7ab3e0c1136e"
-            ]
-        ]
-    },
-    {
         "id": "8608ada3ee7e3084",
         "type": "debug",
         "z": "942dc37616da95b9",
@@ -301,6 +271,17 @@
         "statusType": "auto",
         "x": 660,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3844a813438a2714",
+        "type": "http response",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 140,
         "wires": []
     }
 ]
