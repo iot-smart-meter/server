@@ -123,14 +123,6 @@
         "hidden": false
     },
     {
-        "id": "b5679d5cc3e99546",
-        "type": "ui_tab",
-        "name": "This is a test",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "798c329928815309",
         "type": "ui_group",
         "name": "Uhrzeit",
@@ -162,8 +154,7 @@
         "y": 100,
         "wires": [
             [
-                "e4362e3f947bfb54",
-                "e0ad5f7f077cd159"
+                "e4362e3f947bfb54"
             ]
         ]
     },
@@ -202,23 +193,6 @@
                 "a968c9e9907ecace"
             ]
         ]
-    },
-    {
-        "id": "e0ad5f7f077cd159",
-        "type": "debug",
-        "z": "4668cb4464f76ef5",
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 420,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "e6256739bb89246f",
