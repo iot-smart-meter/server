@@ -1,0 +1,33 @@
+{
+    "identifier": {
+        "type": "string",
+        "description": "The Identifier of the sensor.",
+        "required": true
+    },
+    "name": {
+        "type": "string",
+        "description": "The name of the sensor.",
+        "required": false
+    },
+    "description": {
+        "type": "string",
+        "description": "The description of the sensor.",
+        "required": false
+    },
+    "current_value": {
+        "type": "integer",
+        "description": "The current value of the sensor in watts.",
+        "required": true
+    },
+    "total_value": {
+        "type": "integer",
+        "description": "The total value of the sensor in kWH.",
+        "required": true
+    },
+    "current_time": {
+        "type": "date",
+        "description": "The current time of the sensor.",
+        "format-example": "2012-04-23T18:25:43.511Z - js.Date.toJSON()",
+        "required": false
+    }
+}
