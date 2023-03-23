@@ -2,283 +2,305 @@
     {
         "id": "4668cb4464f76ef5",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Website Homescreen",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "f2046bc7.516eb8",
+        "id": "942dc37616da95b9",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Sensor init",
         "disabled": false,
-        "info": ""
+        "info": "Goal is to enable the first handshake with a sensor using a POST Request",
+        "env": []
     },
     {
-        "id": "a39d6a5a.b9ea58",
-        "type": "serial-port",
-        "serialport": "/dev/ttyUSB0",
-        "serialbaud": "300",
-        "databits": "7",
-        "parity": "even",
-        "stopbits": "1",
-        "waitfor": "",
-        "dtr": "none",
-        "rts": "none",
-        "cts": "none",
-        "dsr": "none",
-        "newline": "1000",
-        "bin": "false",
-        "out": "interbyte",
-        "addchar": "",
-        "responsetimeout": "10000"
+        "id": "2c287116b37742e8",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "true",
+            "allowTempTheme": "true",
+            "dateFormat": "DD.MM.YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
     },
     {
-        "id": "b35b3f17e0155de8",
-        "type": "debug",
-        "z": "4668cb4464f76ef5",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
-        "y": 100,
-        "wires": []
+        "id": "10628167c71ff284",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "mi-home",
+        "disabled": false,
+        "hidden": false
     },
     {
-        "id": "056959096706bb03",
+        "id": "798c329928815309",
+        "type": "ui_group",
+        "name": "Uhrzeit",
+        "tab": "10628167c71ff284",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d1108013eedb4448",
         "type": "inject",
         "z": "4668cb4464f76ef5",
         "name": "",
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 360,
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "e4362e3f947bfb54"
+            ]
+        ]
+    },
+    {
+        "id": "a968c9e9907ecace",
+        "type": "ui_text",
+        "z": "4668cb4464f76ef5",
+        "group": "798c329928815309",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 610,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "e4362e3f947bfb54",
+        "type": "function",
+        "z": "4668cb4464f76ef5",
+        "name": "convert Timestamp",
+        "func": "const fixedStr = (num) => {\n    return (\"0\" + num).slice(-2)\n}\nlet timestamp = new Date(msg.payload);\nconst [hour, minutes, seconds] = [\n    timestamp.getHours(),\n    timestamp.getMinutes(),\n    timestamp.getSeconds(),\n];\nmsg.payload = fixedStr(hour) + \":\" + fixedStr(minutes) + \":\" + fixedStr(seconds);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "a968c9e9907ecace"
+            ]
+        ]
+    },
+    {
+        "id": "e6256739bb89246f",
+        "type": "http in",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "url": "sensor",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "f54cad9c07529db3"
+            ]
+        ]
+    },
+    {
+        "id": "f54cad9c07529db3",
+        "type": "RequestValidator",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "group_name": "",
+        "query": "{}",
+        "reqbody": "{\"id\":{\"type\":\"number\",\"required\":\"true\"}}",
+        "method": "POST",
+        "includeHeader": false,
+        "headerSchema": "",
+        "convert": true,
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "1e77a137eea28190"
+            ],
+            [
+                "fa41242f5012781f",
+                "8608ada3ee7e3084"
+            ]
+        ]
+    },
+    {
+        "id": "75ee7ab3e0c1136e",
+        "type": "http response",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fa41242f5012781f",
+        "type": "http response",
+        "z": "942dc37616da95b9",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "016875d485a1001d",
+        "type": "comment",
+        "z": "942dc37616da95b9",
+        "name": "Error node at the bottom",
+        "info": "",
+        "x": 410,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1e77a137eea28190",
+        "type": "function",
+        "z": "942dc37616da95b9",
+        "name": "function 1",
+        "func": "var count = context.get(\"numSensors\") || 0;\ncount++;\ncontext.set(\"numSensors\", count);\nmsg.payload.sensorID = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
         "y": 140,
         "wires": [
             [
-                "b35b3f17e0155de8"
+                "75ee7ab3e0c1136e"
             ]
         ]
     },
     {
-        "id": "f4e0e469.028068",
-        "type": "inject",
-        "z": "f2046bc7.516eb8",
-        "name": "",
-        "repeat": "60",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 80,
-        "wires": [
-            [
-                "4581b591.599dac"
-            ]
-        ]
-    },
-    {
-        "id": "4581b591.599dac",
-        "type": "trigger",
-        "z": "f2046bc7.516eb8",
-        "name": "",
-        "op1": "[\"0x2F\",\"0x3F\",\"0x21\",\"0x0D\",\"0x0A\"]",
-        "op2": "[\"0x06\",\"0x30\",\"0x30\",\"0x30\",\"0x0D\",\"0x0A\"]",
-        "op1type": "bin",
-        "op2type": "bin",
-        "duration": "100",
-        "extend": false,
-        "units": "ms",
-        "reset": "",
-        "bytopic": "all",
-        "outputs": 1,
-        "x": 300,
-        "y": 80,
-        "wires": [
-            [
-                "4ac03ed.35a84c"
-            ]
-        ]
-    },
-    {
-        "id": "2832ebbc.839af4",
+        "id": "8608ada3ee7e3084",
         "type": "debug",
-        "z": "f2046bc7.516eb8",
-        "name": "",
+        "z": "942dc37616da95b9",
+        "name": "POST /sensor Invalid",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
-        "x": 190,
-        "y": 260,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 240,
         "wires": []
-    },
-    {
-        "id": "36641060.e852c",
-        "type": "split",
-        "z": "f2046bc7.516eb8",
-        "name": "Aufteilen der Ausgabe",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 180,
-        "y": 180,
-        "wires": [
-            [
-                "bed1d161.721d4"
-            ]
-        ]
-    },
-    {
-        "id": "bed1d161.721d4",
-        "type": "switch",
-        "z": "f2046bc7.516eb8",
-        "name": "Suchen nach Zählerstand (1.8.0)",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "1.8.0",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 440,
-        "y": 180,
-        "wires": [
-            [
-                "37ff327f.6bb2de"
-            ]
-        ]
-    },
-    {
-        "id": "37ff327f.6bb2de",
-        "type": "split",
-        "z": "f2046bc7.516eb8",
-        "name": "Wert Zählerstand trennen",
-        "splt": "1-0:1.8.0*255(",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 710,
-        "y": 180,
-        "wires": [
-            [
-                "e074f889.ca3a48"
-            ]
-        ]
-    },
-    {
-        "id": "e074f889.ca3a48",
-        "type": "switch",
-        "z": "f2046bc7.516eb8",
-        "name": "Enthält Zählerstand",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 930,
-        "y": 180,
-        "wires": [
-            [
-                "98bdd1fb.8ec16"
-            ]
-        ]
-    },
-    {
-        "id": "8641792d.69c1f8",
-        "type": "switch",
-        "z": "f2046bc7.516eb8",
-        "name": "Enthält sechsstellige Zahl",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "btwn",
-                "v": "0",
-                "vt": "num",
-                "v2": "9999999",
-                "v2t": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 1430,
-        "y": 180,
-        "wires": [
-            [
-                "2832ebbc.839af4"
-            ]
-        ]
-    },
-    {
-        "id": "98bdd1fb.8ec16",
-        "type": "split",
-        "z": "f2046bc7.516eb8",
-        "name": "Zählerstand Wert suchen (kWh)",
-        "splt": " kWh",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 1170,
-        "y": 180,
-        "wires": [
-            [
-                "8641792d.69c1f8"
-            ]
-        ]
-    },
-    {
-        "id": "4ac03ed.35a84c",
-        "type": "serial request",
-        "z": "f2046bc7.516eb8",
-        "name": "",
-        "serial": "a39d6a5a.b9ea58",
-        "x": 470,
-        "y": 80,
-        "wires": [
-            [
-                "36641060.e852c"
-            ]
-        ]
     }
 ]
