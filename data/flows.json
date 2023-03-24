@@ -603,7 +603,7 @@
         "id": "6f10ef03d8004555",
         "type": "inject",
         "z": "01d5ea2b4b2aded7",
-        "name": "Delete DB Entrys",
+        "name": "Delete Names",
         "props": [
             {
                 "p": "payload"
@@ -621,11 +621,12 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 1320,
+        "x": 1310,
         "y": 100,
         "wires": [
             [
-                "855ce28333fee567"
+                "855ce28333fee567",
+                "feadcfd9f6ed7a4b"
             ]
         ],
         "icon": "font-awesome/fa-trash-o"
@@ -641,7 +642,7 @@
         "upsert": false,
         "multi": false,
         "operation": "delete",
-        "x": 1670,
+        "x": 1590,
         "y": 100,
         "wires": []
     },
@@ -667,7 +668,7 @@
         "payload": "{}",
         "payloadType": "json",
         "x": 370,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "970e5dd7dd57a3e4"
@@ -683,7 +684,7 @@
         "collection": "sensorDescription",
         "operation": "find",
         "x": 670,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "9b1bc96b6e646c3f"
@@ -704,7 +705,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1010,
-        "y": 160,
+        "y": 220,
         "wires": []
     },
     {
@@ -725,6 +726,213 @@
         "info": "",
         "x": 1340,
         "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d85649e1049daff1",
+        "type": "inject",
+        "z": "01d5ea2b4b2aded7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "f0711ee29849c4c6"
+            ]
+        ]
+    },
+    {
+        "id": "f0711ee29849c4c6",
+        "type": "mongodb in",
+        "z": "01d5ea2b4b2aded7",
+        "mongodb": "5456fd1ee54e6f5b",
+        "name": "",
+        "collection": "sensorData",
+        "operation": "find",
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "5e994383c2433a11"
+            ]
+        ]
+    },
+    {
+        "id": "5e994383c2433a11",
+        "type": "debug",
+        "z": "01d5ea2b4b2aded7",
+        "name": "sensorData",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "0921d9f62c8c515a",
+        "type": "inject",
+        "z": "01d5ea2b4b2aded7",
+        "name": "Delete Description",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "collection",
+                "v": "sensorDescription",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 1330,
+        "y": 220,
+        "wires": [
+            [
+                "db71d352c4b843cf",
+                "02e363c0a50d5f47"
+            ]
+        ],
+        "icon": "font-awesome/fa-trash-o"
+    },
+    {
+        "id": "db71d352c4b843cf",
+        "type": "mongodb out",
+        "z": "01d5ea2b4b2aded7",
+        "mongodb": "5456fd1ee54e6f5b",
+        "name": "",
+        "collection": "",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 1590,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e23bbfc18b3f3f6b",
+        "type": "inject",
+        "z": "01d5ea2b4b2aded7",
+        "name": "Delete Data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "collection",
+                "v": "sensorData",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 1310,
+        "y": 340,
+        "wires": [
+            [
+                "5e97c7698a95bba2",
+                "7eb352112710b01e"
+            ]
+        ],
+        "icon": "font-awesome/fa-trash-o"
+    },
+    {
+        "id": "5e97c7698a95bba2",
+        "type": "mongodb out",
+        "z": "01d5ea2b4b2aded7",
+        "mongodb": "5456fd1ee54e6f5b",
+        "name": "",
+        "collection": "",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 1590,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "feadcfd9f6ed7a4b",
+        "type": "debug",
+        "z": "01d5ea2b4b2aded7",
+        "name": "DELETED NAMES",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1570,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "02e363c0a50d5f47",
+        "type": "debug",
+        "z": "01d5ea2b4b2aded7",
+        "name": "DELETED NAMES",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1570,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "7eb352112710b01e",
+        "type": "debug",
+        "z": "01d5ea2b4b2aded7",
+        "name": "DELETED NAMES",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1570,
+        "y": 400,
         "wires": []
     }
 ]
