@@ -38,7 +38,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18\r\n}",
+					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18,\r\n    \"name\": \"Hello\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,6 +65,32 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18,\r\n    \"current_time\": \"2023-03-24T10:14:23.234Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/{{sensorData-url}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"{{sensorData-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "with description",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18,\r\n    \"description\": \"Lorem Ipsum\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
