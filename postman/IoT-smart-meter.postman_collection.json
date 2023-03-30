@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "844f7e48-9fe1-44bb-afa4-12c03d26201f",
+		"name": "IoT-smart-meter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Only Required Fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/{{sensorData-url}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"{{sensorData-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "with name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/{{sensorData-url}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"{{sensorData-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "With Date",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identifier\": \"test-ingress\",\r\n    \"current_value\": \"17\",\r\n    \"total_value\": 18,\r\n    \"current_time\": \"2023-03-24T10:14:23.234Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/{{sensorData-url}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"{{sensorData-url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": "localhost:1880"
+		},
+		{
+			"key": "sensorData-url",
+			"value": "sensor"
+		}
+	]
+}

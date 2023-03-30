@@ -15,12 +15,12 @@
         "required": false
     },
     "current_value": {
-        "type": "integer",
+        "type": "number",
         "description": "The current value of the sensor in watts.",
         "required": true
     },
     "total_value": {
-        "type": "integer",
+        "type": "number",
         "description": "The total value of the sensor in kWH.",
         "required": true
     },
