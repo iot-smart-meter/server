@@ -25,3 +25,22 @@ services:
       - "27017:27017"
     volumes:
       - ./mongo:/data/db
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/etc:/var/lib/grafana/etc
+      - ./grafana-conf/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_PATHS_CONFIG=/var/lib/grafana/etc/grafana.ini
+  influxdb:
+    image: influxdb
+    env_file:
+      - influxv2.env
+    volumes:
+      # Mount for influxdb data directory and configuration
+      - ./influx:/var/lib/influxdb2
+    ports:
+      - "8086:8086"

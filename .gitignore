@@ -4,3 +4,4 @@ data/.*
 **/*.backup
 data/flows_cred.json
 mongo
+influx
