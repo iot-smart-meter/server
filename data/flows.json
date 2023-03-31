@@ -24,6 +24,14 @@
         "env": []
     },
     {
+        "id": "d9a7c2f1673eaec9",
+        "type": "tab",
+        "label": "Influx Test",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "2c287116b37742e8",
         "type": "ui_base",
         "theme": {
@@ -150,6 +158,20 @@
         "port": "27017",
         "db": "IoTSmartMeter",
         "name": ""
+    },
+    {
+        "id": "772344094d032536",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "InfluxDB",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "rejectUnauthorized": false
     },
     {
         "id": "d1108013eedb4448",
@@ -934,5 +956,48 @@
         "x": 1570,
         "y": 400,
         "wires": []
+    },
+    {
+        "id": "47d9d4c29e19dd2e",
+        "type": "influxdb out",
+        "z": "d9a7c2f1673eaec9",
+        "influxdb": "772344094d032536",
+        "name": "",
+        "measurement": "mytest",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "myorg",
+        "bucket": "mybucket",
+        "x": 880,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "44392ddedb389399",
+        "type": "inject",
+        "z": "d9a7c2f1673eaec9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "47d9d4c29e19dd2e"
+            ]
+        ]
     }
 ]

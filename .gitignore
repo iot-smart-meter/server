@@ -2,5 +2,5 @@ data/node_modules
 data/.npm
 data/.*
 **/*.backup
-data/flows_cred.json
 mongo
+influx
