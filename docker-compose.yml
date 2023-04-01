@@ -12,6 +12,8 @@ services:
     build: .
     depends_on:
       - mongo
+      - influxdb
+      - grafana
     environment:
       - TZ=Europe/Amsterdam
     ports:
@@ -28,6 +30,8 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    depends_on:
+      - influxdb
     ports:
       - "3000:3000"
     volumes:
@@ -37,6 +41,7 @@ services:
       - GF_PATHS_CONFIG=/var/lib/grafana/etc/grafana.ini
   influxdb:
     image: influxdb
+    container_name: influxdb
     env_file:
       - influxv2.env
     volumes:

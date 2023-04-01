@@ -32,6 +32,14 @@
         "env": []
     },
     {
+        "id": "4be1249df243f360",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "2c287116b37742e8",
         "type": "ui_base",
         "theme": {
@@ -325,21 +333,6 @@
         "wires": []
     },
     {
-        "id": "fc6571b406de1da0",
-        "type": "mongodb out",
-        "z": "942dc37616da95b9",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "sensorData",
-        "payonly": true,
-        "upsert": false,
-        "multi": false,
-        "operation": "store",
-        "x": 1530,
-        "y": 420,
-        "wires": []
-    },
-    {
         "id": "370d6811da2dcec6",
         "type": "switch",
         "z": "942dc37616da95b9",
@@ -438,36 +431,6 @@
         ]
     },
     {
-        "id": "67aeace8e1ea2fb2",
-        "type": "mongodb out",
-        "z": "942dc37616da95b9",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "sensorNames",
-        "payonly": false,
-        "upsert": true,
-        "multi": false,
-        "operation": "update",
-        "x": 1350,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "bc9af173b8315fd3",
-        "type": "mongodb out",
-        "z": "942dc37616da95b9",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "sensorDescription",
-        "payonly": false,
-        "upsert": true,
-        "multi": false,
-        "operation": "update",
-        "x": 1590,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "217f34ee3eaf88f8",
         "type": "switch",
         "z": "942dc37616da95b9",
@@ -515,8 +478,9 @@
         "wires": [
             [
                 "3844a813438a2714",
-                "fc6571b406de1da0",
-                "48fd90e793a4a8b2"
+                "48fd90e793a4a8b2",
+                "825b44b9fd184fc3",
+                "df6d4b974a48f7fa"
             ]
         ],
         "icon": "font-awesome/fa-arrow-right"
@@ -526,7 +490,7 @@
         "type": "function",
         "z": "942dc37616da95b9",
         "name": "extract name",
-        "func": "const query = {\n    \"identifier\": msg.payload.identifier,\n    \"by_sensor\": true\n}\nconst payload = {\n    \"name\": msg.payload.name,\n    \"current_time\": msg.payload.current_time,\n    ...query\n}\nmsg.payload = payload;\nmsg.query = query;\nreturn msg;",
+        "func": "const query = {\n    \"identifier\": msg.payload.identifier,\n}\nconst payload = {\n    \"$set\": {\n        \"name.sensor\": msg.payload.name\n    }\n}\nmsg.payload = payload;\nmsg.query = query;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -536,7 +500,7 @@
         "y": 240,
         "wires": [
             [
-                "67aeace8e1ea2fb2"
+                "8728ec2d6c25fbe2"
             ]
         ]
     },
@@ -545,17 +509,88 @@
         "type": "function",
         "z": "942dc37616da95b9",
         "name": "extract description",
-        "func": "const query = {\n    \"identifier\": msg.payload.identifier,\n    \"by_sensor\": true\n}\nconst payload = {\n    \"description\": msg.payload.description,\n    \"current_time\": msg.payload.current_time,\n    ...query\n}\nmsg.payload = payload;\nmsg.query = query;\nreturn msg;",
+        "func": "const query = {\n    \"identifier\": msg.payload.identifier,\n}\nconst payload = {\n    \"$set\": {\n        \"description.sensor\": msg.payload.description\n    }\n}\nmsg.payload = payload;\nmsg.query = query;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 300,
+        "y": 280,
         "wires": [
             [
-                "bc9af173b8315fd3"
+                "8728ec2d6c25fbe2"
+            ]
+        ]
+    },
+    {
+        "id": "8728ec2d6c25fbe2",
+        "type": "mongodb out",
+        "z": "942dc37616da95b9",
+        "mongodb": "5456fd1ee54e6f5b",
+        "name": "",
+        "collection": "sensorMeta",
+        "payonly": false,
+        "upsert": true,
+        "multi": false,
+        "operation": "update",
+        "x": 1690,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "825b44b9fd184fc3",
+        "type": "function",
+        "z": "942dc37616da95b9",
+        "name": "extract identifier",
+        "func": "const query = {\n    \"identifier\": msg.payload.identifier,\n}\nconst payload = {\n    \"$set\": {\n        \"identifier\": msg.payload.identifier\n    }\n}\nmsg.payload = payload;\nmsg.query = query;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 320,
+        "wires": [
+            [
+                "8728ec2d6c25fbe2"
+            ]
+        ]
+    },
+    {
+        "id": "2724c4726d1f507c",
+        "type": "influxdb out",
+        "z": "942dc37616da95b9",
+        "influxdb": "772344094d032536",
+        "name": "",
+        "measurement": "sensor-data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "IoT-smart-meter",
+        "bucket": "smart-meter",
+        "x": 1680,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "df6d4b974a48f7fa",
+        "type": "function",
+        "z": "942dc37616da95b9",
+        "name": "prepare insert",
+        "func": "msg.payload = [\n    {\n        current_value: msg.payload.current_value,\n        total_value: msg.payload.total_value,\n        //time: msg.payload.current_time,\n    },\n    {\n        identifier: msg.payload.identifier,\n    }\n]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 420,
+        "wires": [
+            [
+                "2724c4726d1f507c"
             ]
         ]
     },
@@ -594,7 +629,7 @@
         "z": "01d5ea2b4b2aded7",
         "mongodb": "5456fd1ee54e6f5b",
         "name": "",
-        "collection": "sensorNames",
+        "collection": "sensorMeta",
         "operation": "find",
         "x": 650,
         "y": 100,
@@ -608,7 +643,7 @@
         "id": "5282a478c16ce879",
         "type": "debug",
         "z": "01d5ea2b4b2aded7",
-        "name": "sensorNames",
+        "name": "sensorMeta",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -617,7 +652,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1000,
+        "x": 990,
         "y": 100,
         "wires": []
     },
@@ -625,14 +660,14 @@
         "id": "6f10ef03d8004555",
         "type": "inject",
         "z": "01d5ea2b4b2aded7",
-        "name": "Delete Names",
+        "name": "Delete Meta",
         "props": [
             {
                 "p": "payload"
             },
             {
                 "p": "collection",
-                "v": "sensorNames",
+                "v": "sensorMeta",
                 "vt": "str"
             }
         ],
@@ -669,68 +704,6 @@
         "wires": []
     },
     {
-        "id": "a76053e05b87db29",
-        "type": "inject",
-        "z": "01d5ea2b4b2aded7",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{}",
-        "payloadType": "json",
-        "x": 370,
-        "y": 220,
-        "wires": [
-            [
-                "970e5dd7dd57a3e4"
-            ]
-        ]
-    },
-    {
-        "id": "970e5dd7dd57a3e4",
-        "type": "mongodb in",
-        "z": "01d5ea2b4b2aded7",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "sensorDescription",
-        "operation": "find",
-        "x": 670,
-        "y": 220,
-        "wires": [
-            [
-                "9b1bc96b6e646c3f"
-            ]
-        ]
-    },
-    {
-        "id": "9b1bc96b6e646c3f",
-        "type": "debug",
-        "z": "01d5ea2b4b2aded7",
-        "name": "sensorDescriptions",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1010,
-        "y": 220,
-        "wires": []
-    },
-    {
         "id": "81b0f0832e24e989",
         "type": "comment",
         "z": "01d5ea2b4b2aded7",
@@ -751,166 +724,10 @@
         "wires": []
     },
     {
-        "id": "d85649e1049daff1",
-        "type": "inject",
-        "z": "01d5ea2b4b2aded7",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{}",
-        "payloadType": "json",
-        "x": 370,
-        "y": 340,
-        "wires": [
-            [
-                "f0711ee29849c4c6"
-            ]
-        ]
-    },
-    {
-        "id": "f0711ee29849c4c6",
-        "type": "mongodb in",
-        "z": "01d5ea2b4b2aded7",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "sensorData",
-        "operation": "find",
-        "x": 650,
-        "y": 340,
-        "wires": [
-            [
-                "5e994383c2433a11"
-            ]
-        ]
-    },
-    {
-        "id": "5e994383c2433a11",
-        "type": "debug",
-        "z": "01d5ea2b4b2aded7",
-        "name": "sensorData",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 990,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "0921d9f62c8c515a",
-        "type": "inject",
-        "z": "01d5ea2b4b2aded7",
-        "name": "Delete Description",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "collection",
-                "v": "sensorDescription",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{}",
-        "payloadType": "json",
-        "x": 1330,
-        "y": 220,
-        "wires": [
-            [
-                "db71d352c4b843cf",
-                "02e363c0a50d5f47"
-            ]
-        ],
-        "icon": "font-awesome/fa-trash-o"
-    },
-    {
-        "id": "db71d352c4b843cf",
-        "type": "mongodb out",
-        "z": "01d5ea2b4b2aded7",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "",
-        "payonly": false,
-        "upsert": false,
-        "multi": false,
-        "operation": "delete",
-        "x": 1590,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "e23bbfc18b3f3f6b",
-        "type": "inject",
-        "z": "01d5ea2b4b2aded7",
-        "name": "Delete Data",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "collection",
-                "v": "sensorData",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{}",
-        "payloadType": "json",
-        "x": 1310,
-        "y": 340,
-        "wires": [
-            [
-                "5e97c7698a95bba2",
-                "7eb352112710b01e"
-            ]
-        ],
-        "icon": "font-awesome/fa-trash-o"
-    },
-    {
-        "id": "5e97c7698a95bba2",
-        "type": "mongodb out",
-        "z": "01d5ea2b4b2aded7",
-        "mongodb": "5456fd1ee54e6f5b",
-        "name": "",
-        "collection": "",
-        "payonly": false,
-        "upsert": false,
-        "multi": false,
-        "operation": "delete",
-        "x": 1590,
-        "y": 340,
-        "wires": []
-    },
-    {
         "id": "feadcfd9f6ed7a4b",
         "type": "debug",
         "z": "01d5ea2b4b2aded7",
-        "name": "DELETED NAMES",
+        "name": "DELETED SENSOR - METADATA",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -919,42 +736,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1570,
+        "x": 1620,
         "y": 160,
-        "wires": []
-    },
-    {
-        "id": "02e363c0a50d5f47",
-        "type": "debug",
-        "z": "01d5ea2b4b2aded7",
-        "name": "DELETED NAMES",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1570,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "7eb352112710b01e",
-        "type": "debug",
-        "z": "01d5ea2b4b2aded7",
-        "name": "DELETED NAMES",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1570,
-        "y": 400,
         "wires": []
     },
     {
@@ -969,10 +752,10 @@
         "database": "database",
         "precisionV18FluxV20": "ms",
         "retentionPolicyV18Flux": "",
-        "org": "myorg",
-        "bucket": "mybucket",
+        "org": "IoT-smart-meter",
+        "bucket": "smart-meter",
         "x": 880,
-        "y": 240,
+        "y": 260,
         "wires": []
     },
     {
@@ -993,6 +776,25 @@
         "payload": "",
         "payloadType": "date",
         "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "b314aaa42c83ea62"
+            ]
+        ]
+    },
+    {
+        "id": "b314aaa42c83ea62",
+        "type": "function",
+        "z": "d9a7c2f1673eaec9",
+        "name": "function 1",
+        "func": "msg.payload = [{\n    intValue: '10i',\n    numValue: 12,\n    randomValue: Math.random() * 10,\n    strValue: \"message2\"\n},\n{\n    tag1: \"sensor1\",\n    tag2: \"device2\"\n}];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
         "y": 260,
         "wires": [
             [

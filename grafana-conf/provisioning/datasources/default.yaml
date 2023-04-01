@@ -6,8 +6,8 @@ datasources:
     url: http://influxdb:8086
     jsonData:
       version: Flux
-      organization: myorg
-      defaultBucket: mybucket
+      organization: IoT-smart-meter
+      defaultBucket: smart-meter
       tlsSkipVerify: true
     secureJsonData:
       token: mytoken
